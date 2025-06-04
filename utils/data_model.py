@@ -91,8 +91,8 @@ class DataModel:
                 transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
             ])
 
-            dataset = CIFAR10("./data", download=False, train=True, transform=transform)
-            testset = CIFAR10("./data", download=False, train=False, transform=transform)
+            dataset = CIFAR10("./data", download=True, train=True, transform=transform)
+            testset = CIFAR10("./data", download=True, train=False, transform=transform)
         elif dataset_name == "CIFAR100":
             transform = transforms.Compose([
                 transforms.ToTensor(),
@@ -242,7 +242,7 @@ class DataModel:
         if skew_type == "label":
             label_distribution = np.random.dirichlet(np.repeat(alpha, num_clients), size=num_classes).T
             # plot_distribution(label_distribution, alpha, mode="label", args=args)
-            # bubble_plot_distribution(label_distribution, alpha, mode="label", args=args)
+            bubble_plot_distribution(label_distribution, alpha, mode="label", args=args)
         elif skew_type == "feature":
             feature_distribution = np.random.dirichlet(np.repeat(alpha, num_clients), size=num_domains).T
             # plot_distribution(feature_distribution, alpha, mode="feature", args=args)
