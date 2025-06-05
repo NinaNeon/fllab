@@ -49,6 +49,7 @@ parser.add_argument("--overlap_clients", default=2, type=int, help="number of ov
 parser.add_argument("--dpfl", default=0, type=int, help="Enable knowledge pool module for federated learning")
 ''' System setting '''
 parser.add_argument("--figure_path", default="./figures/", type=str)
+parser.add_argument("--model_path", default="./weights/", type=str)
 parser.add_argument("--log_dir", default="./log/runs/", type=str)
 parser.add_argument("--augmentation", default=0, type=int, help="data augmentation or not")
 parser.add_argument("--load_data_to_memory", default=1, type=int, help="load data to memory or not")
@@ -59,6 +60,7 @@ parser.add_argument("--sim", action="store_true", help="use simulation or not")
 args = parser.parse_args()
 
 os.makedirs(args.figure_path, exist_ok=True)
+os.makedirs(args.model_path, exist_ok=True)
 
 # Simulus for virtual clock simulation
 sim = simulus.simulator() if args.sim else None
@@ -171,6 +173,7 @@ def main(args, progress=gr.Progress(track_tqdm=True)):
 
         ''' Evaluate on each domain (all clients) '''
         server.evaluate(rounds=i, model=None, tag="all")
+        torch.save(server.model, "{}/fl_model.pth".format(args.model_path))
 
     
     wandb.finish()
