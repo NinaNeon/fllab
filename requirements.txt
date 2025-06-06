@@ -15,4 +15,4 @@ Pillow
 gradio
 tensorboard
 simulus
-opencv-python
+opencv-python-headless
