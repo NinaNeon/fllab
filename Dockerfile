@@ -1,7 +1,7 @@
 FROM arm64v8/python:3.10-slim
 
 RUN apt-get update && apt-get install -y \
-    build-essential libopenblas-dev libssl-dev libffi-dev \
+    build-essential libopenblas-dev libssl-dev libffi-dev libgl1-mesa-glx\
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
