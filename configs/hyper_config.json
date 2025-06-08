@@ -488,7 +488,7 @@
         "fedavg": {},
 
         "fedprox": {
-            "mu": 0.00325
+            "mu": 0.01
         },
 
         "scaffold": {},
