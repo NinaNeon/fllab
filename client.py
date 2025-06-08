@@ -14,7 +14,7 @@ from utils.util import *
 
 ''' FL Client class '''
 class FLclient(BaseClient):
-    def __init__(self, cid: int, dataset: Dict[str, Dataset], strategy: Strategy, device: torch.device, args: Dict, sim=None):
+    def __init__(self, cid: int, dataset: Dict[str, Dataset], strategy: Strategy, device: torch.device, args: Dict, sim=None, malicious: bool = False):
         super().__init__(device, args)
         '''
         cid: client id
@@ -57,6 +57,8 @@ class FLclient(BaseClient):
         self.device = device
         self.sim = sim
 
+        self.malicious = malicious
+
         # save_image(make_grid(next(iter(self.trainLoader))[0][:8], padding=1), 
         #            "{}/cid_{}.png".format(args.figure_path, cid))
 
@@ -83,6 +85,15 @@ class FLclient(BaseClient):
             dataset = self.dataset[f"task_{self._current_tid}"]
         else:
             dataset = self.dataset
+
+        if self.malicious and self.cid == 0:
+            for name, ds in dataset.items():
+                if hasattr(ds.dataset, 'labels'):
+                    # print(ds.dataset.labels[:10])  # Print first 10 labels to verify change
+                    ds.dataset.labels = [(t + 1) % 10 for t in ds.dataset.labels]
+                    # print(ds.dataset.labels[:10])  # Print first 10 targets to verify change
+                    # input()
+            print(f"{Fore.RED}Client {self.cid} is malicious!{Style.RESET_ALL}")
     
         Dataset = ConcatDataset([dataset[name] for name in dataset])
         val_len = int(len(Dataset) * self.args.val_ratio)

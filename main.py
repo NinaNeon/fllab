@@ -145,6 +145,7 @@ def main(args, progress=gr.Progress(track_tqdm=True)):
                     device=device,
                     args=args,
                     sim=sim,
+                    malicious=False
                 )
         server.add_client(client)
 
