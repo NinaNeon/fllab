@@ -280,6 +280,31 @@ Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte
 100%|██████████████████████████| 1648877/1648877 [00:02<00:00, 766769.76steps/s]
 Extracting ./data/digit/MNIST/raw/t10k-images-idx3-ubyte.gz to ./data/digit/MNIST/raw
 
+
+[Client 8] loss: 0.0131, acc: 0.9973
+[Client 9] loss: 0.0149, acc: 0.9979
+[Server] Done aggregating client models
+===== Evaluate each domain
+[Server, MNIST] test_loss_all: 0.1168, test_acc_all: 0.9633
+[Server] Total_loss_all: 0.1168, Total_acc_all: 0.9633
+Total time: 2975.6493s
+
+----------- Training complete! 🎉 -----------
+^CKeyboard interruption in main thread... closing server.
+Killing tunnel 127.0.0.1:7860 <> https://766b62793672d31d41.gradio.live
+root@ninapi:/app# git checkout comm
+error: pathspec 'comm' did not match any file(s) known to git
+root@ninapi:/app# git branch -a
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+root@ninapi:/app# 
+
+
+
+
+
+
 Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
 Failed to download (trying next):
 HTTP Error 404: Not Found
@@ -940,12 +965,3 @@ Status | O | O | O | O | O | O | O | O | O | O |
 Total time: 2975.6493s
 
 ----------- Training complete! 🎉 -----------
-^CKeyboard interruption in main thread... closing server.
-Killing tunnel 127.0.0.1:7860 <> https://766b62793672d31d41.gradio.live
-root@ninapi:/app# git checkout comm
-error: pathspec 'comm' did not match any file(s) known to git
-root@ninapi:/app# git branch -a
-* main
-  remotes/origin/HEAD -> origin/main
-  remotes/origin/main
-root@ninapi:/app# 
