@@ -1,3 +1,5 @@
+git clone https://github.com/MichaelLee-ceo/fllab.git
+
 
 chmod +x ./install_docker.sh
 ./install_docker.sh
