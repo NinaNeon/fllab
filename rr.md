@@ -1,0 +1,3 @@
+
+chmod +x ./install_docker.sh
+./install_docker.sh
